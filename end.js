@@ -32,3 +32,5 @@ saveHighScore = e => {
     localStorage.setItem('highScores', JSON.stringify(highScores))
     window.location.assign('/')
 }
+
+// This page will appear when the game is over , allowing user to store name and score.

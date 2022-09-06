@@ -4,6 +4,8 @@ const progressText = document.querySelector('#progressText');
 const scoreText = document.querySelector('#score');
 const progressBarFull = document.querySelector('#progressBarFull');
 
+const timer = document.getElementById("timer")
+
 let currentQuestion = {}
 let acceptingAnswers = true
 let score = 0
@@ -102,6 +104,7 @@ startGame = () => {
     availableQuestions = [...questions]
     getNewQuestion()
 }
+// This function starts the game and loads the first question.
 
 getNewQuestion = () => {
     if(availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
@@ -109,10 +112,6 @@ getNewQuestion = () => {
 
         return window.location.assign('/end.html')
     }
-
-    questionCounter++
-    progressText.innerText = 'Question ${questionCounter} of ${MAX_QUESTIONS}'
-    progressBarFull.style.width = '${(questionCounter/MAX_QUESTIONS) * 100}%'
 
     const questionIndex = Math.floor(Math.random() * availableQuestions.length)
     currentQuestion = availableQuestions[questionIndex]
@@ -127,7 +126,7 @@ getNewQuestion = () => {
 
     acceptingAnswers = true
 }
-
+// once the current question is answered, this function will calculate the answer and add or subtract points before moving to the next question.
 choices.forEach(choice => {
     choice.addEventListener('click', e =>{
         if(!acceptingAnswers) return
@@ -152,8 +151,9 @@ choices.forEach(choice => {
 })
 
 incrementScore = num => {
-    score =+num
+    score -+ num
     scoreText.innerText = score
 }
 
 startGame()
+// Starts the game.
